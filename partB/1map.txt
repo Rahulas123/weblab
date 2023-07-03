@@ -1,0 +1,38 @@
+
+<html>
+    <head>
+        <body>
+            <script>
+
+let map = new Map();
+console.time('MAP');
+for (let i = 0; i < 1000000; i++) {
+  map.set(`key${i}`, `value${i}`);
+}
+console.timeEnd('MAP'); // Measure time taken to add keys to Map
+
+console.time('MapDelete');
+for (let i = 0; i < 1000000; i++) {
+  map.delete(`key${i}`);
+}
+console.timeEnd('MapDelete'); // Measure time taken to remove keys from Map
+
+
+// Using Object
+let obj = {};
+console.time('Object');
+for (let i = 0; i < 1000000; i++) {
+  obj[`key${i}`] = `value${i}`;
+}
+console.timeEnd('Object'); // Measure time taken to add keys to Object
+
+console.time('ObjectDelete');
+for (let i = 0; i < 1000000; i++) {
+  delete obj[`key${i}`];
+}
+console.timeEnd('ObjectDelete'); // Measure time taken to remove keys from Object
+
+</script>
+        </body>
+    </head>
+</html>

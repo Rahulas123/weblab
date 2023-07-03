@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <body>
+            <script>
+
+let set = new Set();
+for (let i = 0; i < 1000000; i++) {
+  set.add(`value${i}`);
+}
+
+console.time('SetSearch');
+for (let i = 0; i < 1000000; i++) {
+  set.has(`value${i}`);
+}
+console.timeEnd('SetSearch'); 
+
+let array = [];
+for (let i = 0; i < 1000000; i++) {
+  array.push(`value${i}`);
+}
+
+console.time('ArraySearch');
+for (let i = 0; i < 1000000; i++) {
+  array.includes(`value${i}`);
+}
+console.timeEnd('ArraySearch'); // Measure time taken to search values in Array
+
+</script>
+        </body>
+    </head>
+</html>
