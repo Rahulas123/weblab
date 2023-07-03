@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Caesar Cipher Encryption</title>
+</head>
+<body>
+  <h1>Caesar Cipher Encryption</h1>
+
+  <form id="encryptionForm">
+    <div>
+      <label for="textInput">Enter the text:</label>
+      <input type="text" id="textInput" required>
+    </div>
+
+    <div>
+      <label for="shiftPatternInput">Enter the shift pattern:</label>
+      <input type="number" id="shiftPatternInput" required>
+    </div>
+
+    <button type="submit">Encrypt</button>
+  </form>
+
+  <script>
+    document.getElementById('encryptionForm').addEventListener('submit', function() {
+    //   event.preventDefault();
+
+      // Get the text and shift pattern from the input fields
+      var text = document.getElementById('textInput').value;
+      var shift = parseInt(document.getElementById('shiftPatternInput').value);
+
+      // Encrypt the text using Caesar Cipher
+      var encryptedText = caesarCipherEncrypt(text, shift);
+
+      // Display the encrypted text
+      alert("Encrypted text: " + encryptedText);
+    });
+
+    // Function to encrypt text using Caesar Cipher
+    function caesarCipherEncrypt(text, shift) {
+      var encryptedText = "";
+
+      for (var i = 0; i < text.length; i++) {
+        var charCode = text.charCodeAt(i);
+
+        // Encrypt uppercase letters
+        if (charCode >= 65 && charCode <= 90) {
+          var encryptedCharCode = ((charCode - 65 + shift) % 26) + 65;
+          encryptedText += String.fromCharCode(encryptedCharCode);
+        }
+        // Encrypt lowercase letters
+        else if (charCode >= 97 && charCode <= 122) {
+          var encryptedCharCode = ((charCode - 97 + shift) % 26) + 97;
+          encryptedText += String.fromCharCode(encryptedCharCode);
+        }
+        // Keep non-alphabetic characters as they are
+        else {
+          encryptedText += text.charAt(i);
+        }
+      }
+
+      return encryptedText;
+    }
+  </script>
+</body>
+</html>

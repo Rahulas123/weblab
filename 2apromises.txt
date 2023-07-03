@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Callbacks with Promises Example</title>
+</head>
+<body>
+  <h1>Multiple Callbacks with Promises Example</h1>
+
+  <button onclick="startAsyncOperations()">Start Async Operations</button>
+
+  <div id="output"></div>
+
+  <script>
+    const asyncOperation = (input) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (input) {
+            resolve(`Operation successful with input: ${input}`);
+          } else {
+            reject('Error: Invalid input');
+          }
+        }, 2000);
+      });
+    };
+   
+
+    const startAsyncOperations = () => {
+      const outputDiv = document.getElementById('output');
+    //   outputDiv.innerHTML = '';
+
+      asyncOperation('example')
+        .then((result) => {
+          outputDiv.innerHTML += `<p>${result}</p>`;
+          return asyncOperation('another example');
+        })
+        .then((result) => {
+          outputDiv.innerHTML += `<p>${result}</p>`;
+          return asyncOperation();
+        })
+        .then((result) => {
+          outputDiv.innerHTML += `<p>${result}</p>`;
+        })
+        .catch((error) => {
+          outputDiv.innerHTML += `<p>${error}</p>`;
+        });
+    };
+  </script>
+</body>
+</html>

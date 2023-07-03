@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leap Year Finder</title>
+</head>
+<body>
+  <h1>Leap Year Finder</h1>
+
+  <label for="startYearInput">Start Year:</label>
+  <input type="number" id="startYearInput">
+
+  <label for="endYearInput">End Year:</label>
+  <input type="number" id="endYearInput">
+
+  <button id="findLeapYearsButton">Find Leap Years</button>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('findLeapYearsButton').addEventListener('click', function() {
+      var startYear = parseInt(document.getElementById('startYearInput').value);
+      var endYear = parseInt(document.getElementById('endYearInput').value);
+
+      var leapYears = findLeapYears(startYear, endYear);
+
+      var resultElement = document.getElementById('result');
+      resultElement.innerHTML = 'Leap years: ' + leapYears.join(', ');
+    });
+
+    function findLeapYears(startYear, endYear) {
+      var leapYears = [];
+
+      for (var year = startYear; year <= endYear; year++) {
+        if (isLeapYear(year)) {
+          leapYears.push(year);
+        }
+      }
+
+      return leapYears;
+    }
+
+    function isLeapYear(year) {
+      if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+        return true; // Leap year
+      } else {
+        return false; // Not a leap year
+      }
+    }
+  </script>
+</body>
+</html>

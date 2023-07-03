@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Events Demo</title>
+</head>
+<body>
+  <h1>JavaScript Events Demo</h1>
+
+  <button id="clickButton">Click me!</button>
+
+  <div id="mouseOverDiv">Mouse over me!</div>
+
+  <input type="text" id="changeInput" placeholder="Type something...">
+
+  <input type="text" id="keyDownInput" placeholder="Press a key...">
+
+  <script>
+    // onClick event
+    document.getElementById('clickButton').addEventListener('click', function() {
+      alert("Button clicked!");
+    });
+
+    // onMouseOver event
+    document.getElementById('mouseOverDiv').addEventListener('mouseover', function() {
+      console.log("Mouse over the div!");
+    });
+
+    // onMouseOut event
+    document.getElementById('mouseOverDiv').addEventListener('mouseout', function() {
+      console.log("Mouse out of the div!");
+    });
+
+    // onChange event
+    document.getElementById('changeInput').addEventListener('change', function() {
+      var value = this.value;
+      console.log("Input value changed: " + value);
+    });
+
+    // onKeyDown event
+    document.getElementById('keyDownInput').addEventListener('keydown', function(event) {
+      var key = event.key;
+      console.log("Key pressed: " + key);
+    });
+  </script>
+</body>
+</html>

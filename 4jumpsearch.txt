@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jump Search Example</title>
+</head>
+<body>
+  <h1>Jump Search Example</h1>
+
+  <div>
+    <label for="keyInput">Enter the key:</label>
+    <input type="number" id="keyInput">
+  </div>
+
+  <div>
+    <label for="numbersInput">Enter a list of numbers (comma-separated):</label>
+    <input type="text" id="numbersInput">
+  </div>
+
+  <button id="searchButton">Search</button>
+
+  <script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+      // Get the key and the list of numbers
+      var key = parseInt(document.getElementById('keyInput').value);
+      var numbersInput = document.getElementById('numbersInput').value;
+
+      // Convert the list of numbers to an array
+      var numbers = numbersInput.split(",").map(function(num) {
+        return parseInt(num.trim());
+      });
+
+      // Perform Jump Search
+      var result = jumpSearch(key, numbers);
+
+      // Report the result
+      if (result) {
+        alert("Key found.");
+      } else {
+        alert("Key not found.");
+      }
+    });
+
+    // Function to perform Jump Search
+    function jumpSearch(key, numbers) {
+      // Get the length of the array
+      var n = numbers.length;
+
+      // Determine the block size to jump
+      var step = Math.floor(Math.sqrt(n));
+
+      // Find the block where the key may be present
+      var prev = 0;
+      while (numbers[Math.min(step, n) - 1] < key) {
+        prev = step;
+        step += Math.floor(Math.sqrt(n));
+        if (prev >= n) {
+          return false;
+        }
+      }
+
+      // Linear search within the block
+      while (numbers[prev] < key) {
+        prev++;
+        if (prev === Math.min(step, n)) {
+          return false;
+        }
+      }
+
+      // Check if the key is found
+      if (numbers[prev] === key) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

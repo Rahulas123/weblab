@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Set Operations</title>
+</head>
+<body>
+  <h1>Set Operations</h1>
+
+  <label for="valueInput">Enter a value:</label>
+  <input type="text" id="valueInput">
+  <button id="addButton">Add to Set</button>
+  <button id="retrieveButton">Retrieve from Set</button>
+  <button id="iterateButton">Iterate Set</button>
+
+  <div id="output"></div>
+
+  <script>
+    var mySet = new Set();
+
+    document.getElementById('addButton').addEventListener('click', function() {
+      var value = document.getElementById('valueInput').value;
+      mySet.add(value);
+      document.getElementById('valueInput').value = '';
+    });
+
+    document.getElementById('retrieveButton').addEventListener('click', function() {
+      var value = document.getElementById('valueInput').value;
+      var isValuePresent = mySet.has(value);
+
+      if (isValuePresent) {
+        alert('Value is present in the Set!');
+      } else {
+        alert('Value is not present in the Set!');
+      }
+    });
+
+    document.getElementById('iterateButton').addEventListener('click', function() {
+      var output = document.getElementById('output');
+    //   output.innerHTML = '';
+
+      mySet.forEach(function(value) {
+        output.innerHTML += value + '<br>';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alphabetical Order Example</title>
+</head>
+<body>
+  <h1>Alphabetical Order Example</h1>
+
+  <div>
+    <label for="inputString">Enter a string:</label>
+    <input type="text" id="inputString">
+    <button id="sortButton">Sort Alphabetically</button>
+  </div>
+
+  <p id="result"></p>
+
+  <script>
+    document.getElementById('sortButton').addEventListener('click', function() {
+      // Get the input value
+      var inputString = document.getElementById('inputString').value;
+
+      // Convert the string to an array of characters
+      var charArray = inputString.split('');
+
+      // Sort the array alphabetically using bubble sort algorithm
+      for (var i = 0; i < charArray.length - 1; i++) {
+        for (var j = 0; j < charArray.length - i - 1; j++) {
+          if (charArray[j] > charArray[j + 1]) {
+            // Swap the characters
+            var temp = charArray[j];
+            charArray[j] = charArray[j + 1];
+            charArray[j + 1] = temp;
+          }
+        }
+      }
+
+      // Join the sorted array back into a string
+      var sortedString = charArray.join('');
+
+      // Display the sorted string
+      document.getElementById('result').textContent = sortedString;
+    });
+  </script>
+</body>
+</html>

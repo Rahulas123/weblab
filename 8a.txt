@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function splitStringIntoArray(str) {
+  // Use the split() method to split the string into an array of words
+  var wordsArray = str.split(' ');
+
+  return wordsArray;
+}
+
+// Example usage:
+var inputString = prompt("enter the string");
+var arrayOfWords = splitStringIntoArray(inputString);
+
+console.log(arrayOfWords);
+
+    </script>
+</body>
+</html>

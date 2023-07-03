@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map Operations</title>
+</head>
+<body>
+  <h1>Map Operations</h1>
+
+  <label for="keyInput">Enter a key:</label>
+  <input type="text" id="keyInput">
+
+  <label for="valueInput">Enter a value:</label>
+  <input type="text" id="valueInput">
+
+  <button id="addButton">Add to Map</button>
+  <button id="retrieveButton">Retrieve from Map</button>
+  <button id="iterateButton">Iterate Map</button>
+
+  <div id="output"></div>
+
+  <script>
+    var myMap = new Map();
+
+    document.getElementById('addButton').addEventListener('click', function() {
+      var key = document.getElementById('keyInput').value;
+      var value = document.getElementById('valueInput').value;
+
+      myMap.set(key, value);
+
+      document.getElementById('keyInput').value = '';
+      document.getElementById('valueInput').value = '';
+    });
+
+    document.getElementById('retrieveButton').addEventListener('click', function() {
+      var key = document.getElementById('keyInput').value;
+
+      if (myMap.has(key)) {
+        var value = myMap.get(key);
+        alert('Value for key ' + key + ': ' + value);
+      } else {
+        alert('Key not found in the Map!');
+      }
+    });
+
+    document.getElementById('iterateButton').addEventListener('click', function() {
+      var output = document.getElementById('output');
+      output.innerHTML = '';
+
+      myMap.forEach(function(value, key) {
+        output.innerHTML += 'Key: ' + key + ', Value: ' + value + '<br>';
+      });
+    });
+  </script>
+</body>
+</html>
